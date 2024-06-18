@@ -1,19 +1,16 @@
-import './App.css'
-
 function App() {
   const number = document.getElementById("number");
   const increaseButton = document.getElementById("increase");
   const decreaseButton = document.getElementById("decrease");
   increaseButton!.onclick = () => {
-    const current = parseInt(number!.innerText, 10)
-    number!.innerText = "" + (current + 1)
-  }
+    const current = parseInt(number!.innerText, 10);
+    number!.innerText = "" + (current + 1);
+  };
 
   decreaseButton!.onclick = () => {
-    const current = parseInt(number!.innerText, 10)
-    number!.innerText = "" + (current - 1)
-  }
-
+    const current = parseInt(number!.innerText, 10);
+    number!.innerText = "" + (current - 1);
+  };
 
   return (
     <>
@@ -23,7 +20,7 @@ function App() {
         <button id={"decrease"}>-1</button>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
