@@ -1,9 +1,9 @@
-import Counter from "./Counter.tsx";
+import InputSample from "./InputSample.tsx";
 
 function App() {
   return (
     <>
-      <Counter />
+      <InputSample />
     </>
   );
 }
