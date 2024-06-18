@@ -1,4 +1,4 @@
-import UserList, { User } from "./UserList.tsx";
+import UserList, { User, UserProps } from "./UserList.tsx";
 import CreateUser, { CreateUserProps } from "./CreateUser.tsx";
 import { useRef, useState } from "react";
 
@@ -53,6 +53,10 @@ function App() {
     nextId.current += 1;
   };
 
+  const onRemove: UserProps["onRemove"] = (id) => {
+    setUsers(users.filter((user) => user.id !== id));
+  };
+
   return (
     <>
       <CreateUser
@@ -61,7 +65,7 @@ function App() {
         onChange={onChange}
         onCreate={onCreate}
       />
-      <UserList users={users} />
+      <UserList users={users} onRemove={onRemove} />
     </>
   );
 }
