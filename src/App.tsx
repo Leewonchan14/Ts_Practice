@@ -1,9 +1,9 @@
-import InputSample from "./InputSample.tsx";
+import UserList from "./UserList.tsx";
 
 function App() {
   return (
     <>
-      <InputSample />
+      <UserList />
     </>
   );
 }
