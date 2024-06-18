@@ -1,28 +1,14 @@
-interface User {
+export interface User {
   id: number;
   username: string;
   email: string;
 }
 
-const users: User[] = [
-  {
-    id: 1,
-    username: "velopert",
-    email: "public.velopert@gmail.com",
-  },
-  {
-    id: 2,
-    username: "tester",
-    email: "tester@example.com",
-  },
-  {
-    id: 3,
-    username: "liz",
-    email: "liz@example.com",
-  },
-];
+interface UserListProps {
+  users: User[];
+}
 
-const UserList = () => {
+const UserList = ({ users }: UserListProps) => {
   return (
     <div>
       {users.map((user) => (
