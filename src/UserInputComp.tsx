@@ -1,18 +1,14 @@
 import { ChangeEvent } from "react";
+import { UserInput } from "./hooks/useUserInput.ts";
 
-export interface CreateUserProps {
-  username: string;
-  email: string;
+export interface UserInputCompProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onCreate: () => void;
+  inputs: UserInput;
 }
 
-const CreateUser = ({
-  username,
-  email,
-  onChange,
-  onCreate,
-}: CreateUserProps) => {
+const UserInputComp = ({ onChange, onCreate, inputs }: UserInputCompProps) => {
+  const { username, email } = inputs;
   return (
     <div>
       <input
@@ -32,4 +28,4 @@ const CreateUser = ({
   );
 };
 
-export default CreateUser;
+export default UserInputComp;

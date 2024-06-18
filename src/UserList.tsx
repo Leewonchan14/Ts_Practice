@@ -13,15 +13,15 @@ const UserList = ({ users, onRemove }: UserListProps) => {
   );
 };
 
-export interface UserProps {
-  user: User;
-  onRemove: (id: number) => void;
-}
-
 export interface User {
   id: number;
   username: string;
   email: string;
+}
+
+export interface UserProps {
+  user: User;
+  onRemove: (id: number) => void;
 }
 
 const User = ({ user, onRemove }: UserProps) => {

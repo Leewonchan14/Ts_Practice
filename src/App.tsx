@@ -1,70 +1,15 @@
-import UserList, { User, UserProps } from "./UserList.tsx";
-import CreateUser, { CreateUserProps } from "./CreateUser.tsx";
-import { useRef, useState } from "react";
-
-export const initUsers: User[] = [
-  {
-    id: 1,
-    username: "velopert",
-    email: "public.velopert@gmail.com",
-  },
-  {
-    id: 2,
-    username: "tester",
-    email: "tester@example.com",
-  },
-  {
-    id: 3,
-    username: "liz",
-    email: "liz@example.com",
-  },
-];
-
-export interface UserInputs {
-  email: string;
-  username: string;
-}
+import UserList from "./UserList.tsx";
+import UserInputComp from "./UserInputComp.tsx";
+import { useUserListControl } from "./hooks/useUserListControl.tsx";
+import { useUserInput } from "./hooks/useUserInput.ts";
 
 function App() {
-  const [inputs, setInputs] = useState({
-    email: "",
-    username: "",
-  });
-  const { email, username } = inputs;
-  const [users, setUsers] = useState(initUsers);
-
-  const nextId = useRef<number>(4);
-
-  const onChange: CreateUserProps["onChange"] = (e) => {
-    const { name, value } = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
-  };
-
-  const onCreate: CreateUserProps["onCreate"] = () => {
-    const newUser: User = {
-      id: nextId.current,
-      username: inputs.username,
-      email: inputs.email,
-    };
-    setUsers([...users, newUser]);
-    nextId.current += 1;
-  };
-
-  const onRemove: UserProps["onRemove"] = (id) => {
-    setUsers(users.filter((user) => user.id !== id));
-  };
+  const { inputs, onChange } = useUserInput();
+  const { users, onRemove, onCreate } = useUserListControl(inputs);
 
   return (
     <>
-      <CreateUser
-        username={username}
-        email={email}
-        onChange={onChange}
-        onCreate={onCreate}
-      />
+      <UserInputComp inputs={inputs} onChange={onChange} onCreate={onCreate} />
       <UserList users={users} onRemove={onRemove} />
     </>
   );
