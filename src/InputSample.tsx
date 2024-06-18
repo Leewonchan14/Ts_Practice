@@ -1,6 +1,8 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 
 const InputSample = () => {
+  const nameInput = useRef<HTMLInputElement>(null);
+
   const [inputs, setInputs] = useState({
     name: "",
     nickname: "",
@@ -18,11 +20,13 @@ const InputSample = () => {
       name: "",
       nickname: "",
     });
+    nameInput?.current?.focus();
   };
 
   return (
     <div>
       <input
+        ref={nameInput}
         name={"name"}
         placeholder="이름"
         onChange={onChange}
