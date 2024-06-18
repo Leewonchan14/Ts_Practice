@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 
 const InputSample = () => {
   const [input, setInput] = useState("");
@@ -7,10 +7,15 @@ const InputSample = () => {
     setInput(e.target.value);
   };
 
+  const onReset = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log(e);
+    setInput("");
+  };
+
   return (
     <div>
       <input type="text" value={input} onChange={onChange} />
-      <button>초기화</button>
+      <button onClick={onReset}>초기화</button>
       <div>
         <b>값 : {input}</b>
       </div>
