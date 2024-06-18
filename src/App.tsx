@@ -14,6 +14,7 @@ function App() {
     number!.innerText = "" + (current - 1)
   }
 
+
   return (
     <>
       <h2 id={"number"}>0</h2>
