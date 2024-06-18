@@ -1,11 +1,9 @@
-import Hello from "./Hello.tsx";
+import Counter from "./Counter.tsx";
 
 function App() {
   return (
     <>
-      <Hello name={"이원찬"} color={"red"} isSpecial />
-      <Hello name={"김원찬"} color={"blue"} isSpecial={true} />
-      <Hello color={"black"} isSpecial={false} />
+      <Counter />
     </>
   );
 }
