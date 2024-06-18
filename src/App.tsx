@@ -5,12 +5,12 @@ import { useUserInput } from "./hooks/useUserInput.ts";
 
 function App() {
   const { inputs, onChange } = useUserInput();
-  const { users, onRemove, onCreate } = useUserListControl(inputs);
+  const { users, onRemove, onCreate, onToggle } = useUserListControl(inputs);
 
   return (
     <>
       <UserInputComp inputs={inputs} onChange={onChange} onCreate={onCreate} />
-      <UserList users={users} onRemove={onRemove} />
+      <UserList users={users} onRemove={onRemove} onToggle={onToggle} />
     </>
   );
 }

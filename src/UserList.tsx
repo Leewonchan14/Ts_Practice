@@ -1,33 +1,49 @@
+import {
+  UserInterface,
+  UserOnRemove,
+  UserOnToggle,
+} from "./hooks/useUserListControl.tsx";
+
 interface UserListProps {
-  users: User[];
-  onRemove: UserProps["onRemove"];
+  users: UserInterface[];
+  onRemove: UserOnRemove;
+  onToggle: UserOnToggle;
 }
 
-const UserList = ({ users, onRemove }: UserListProps) => {
+const UserList = ({ users, onRemove, onToggle }: UserListProps) => {
   return (
     <div>
       {users.map((user) => (
-        <User user={user} key={user.id} onRemove={onRemove} />
+        <User
+          user={user}
+          key={user.id}
+          onRemove={onRemove}
+          onToggle={onToggle}
+        />
       ))}
     </div>
   );
 };
 
-export interface User {
-  id: number;
-  username: string;
-  email: string;
-}
-
 export interface UserProps {
-  user: User;
-  onRemove: (id: number) => void;
+  user: UserInterface;
+  onRemove: UserOnRemove;
+  onToggle: UserOnToggle;
 }
 
-const User = ({ user, onRemove }: UserProps) => {
+const User = ({ user, onRemove, onToggle }: UserProps) => {
+  const userNameStyle = {
+    cursor: "pointer",
+    fontWeight: "bold",
+    color: user.active ? "green" : "black",
+  };
+
   return (
     <div>
-      <strong>{user.username}</strong> <span>{user.email}</span>
+      <span style={userNameStyle} onClick={() => onToggle(user.id)}>
+        {user.username}
+      </span>{" "}
+      <span>{user.email}</span>
       <button onClick={() => onRemove(user.id)}>삭제</button>
     </div>
   );
