@@ -1,23 +1,43 @@
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 const InputSample = () => {
-  const [input, setInput] = useState("");
+  const [inputs, setInputs] = useState({
+    name: "",
+    nickname: "",
+  });
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const onReset = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(e);
-    setInput("");
+  const onReset = () => {
+    setInputs({
+      name: "",
+      nickname: "",
+    });
   };
 
   return (
     <div>
-      <input type="text" value={input} onChange={onChange} />
+      <input
+        name={"name"}
+        placeholder="이름"
+        onChange={onChange}
+        value={inputs.name}
+      />
+      <input
+        name={"nickname"}
+        placeholder="닉네임"
+        onChange={onChange}
+        value={inputs.nickname}
+      />
       <button onClick={onReset}>초기화</button>
       <div>
-        <b>값 : {input}</b>
+        <b>값: </b>
+        {inputs.name} {inputs.nickname}
       </div>
     </div>
   );
