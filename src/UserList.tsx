@@ -2,7 +2,7 @@ import {
   UserInterface,
   UserOnRemove,
   UserOnToggle,
-} from "./hooks/useUserListControl.tsx";
+} from "./hooks/useUserListControl.ts";
 
 interface UserListProps {
   users: UserInterface[];

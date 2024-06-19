@@ -1,9 +1,9 @@
-import { ChangeEvent } from "react";
-import { UserInput } from "./hooks/useUserInput.ts";
+import { UserInput, UserInputOnChange } from "./hooks/useUserInput.ts";
+import { UserOnCreate } from "./hooks/useUserListControl.ts";
 
 export interface UserInputCompProps {
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onCreate: () => void;
+  onChange: UserInputOnChange;
+  onCreate: UserOnCreate;
   inputs: UserInput;
 }
 

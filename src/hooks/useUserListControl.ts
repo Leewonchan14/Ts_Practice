@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { UserInputCompProps } from "../UserInputComp.tsx";
 import { UserInput } from "./useUserInput.ts";
 
 export const initUsers: UserInterface[] = [
@@ -32,13 +31,21 @@ export interface UserInterface {
 
 export type UserOnRemove = (userId: number) => void;
 export type UserOnToggle = (userId: number) => void;
+export type UserOnCreate = () => void;
 
-export const useUserListControl = ({ username, email }: UserInput) => {
+export type UseUserListControl = ({ username, email }: UserInput) => {
+  users: UserInterface[];
+  onRemove: UserOnRemove;
+  onCreate: UserOnCreate;
+  onToggle: UserOnToggle;
+};
+
+export const useUserListControl: UseUserListControl = ({ username, email }) => {
   const [users, setUsers] = useState(initUsers);
 
-  const nextId = useRef(initUsers.length - 1);
+  const nextId = useRef(4);
 
-  const onCreate: UserInputCompProps["onCreate"] = () => {
+  const onCreate: UserOnCreate = () => {
     const newUser: UserInterface = {
       id: nextId.current,
       username: username,

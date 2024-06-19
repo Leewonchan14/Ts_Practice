@@ -1,7 +1,7 @@
 import UserList from "./UserList.tsx";
 import UserInputComp from "./UserInputComp.tsx";
-import { useUserListControl } from "./hooks/useUserListControl.tsx";
 import { useUserInput } from "./hooks/useUserInput.ts";
+import { useUserListControl } from "./hooks/useUserListControl.ts";
 
 function App() {
   const { inputs, onChange } = useUserInput();
