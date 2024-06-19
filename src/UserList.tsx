@@ -3,7 +3,7 @@ import {
   UserOnRemove,
   UserOnToggle,
 } from "./hooks/useUserListControl.ts";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 interface UserListProps {
   users: UserInterface[];
@@ -11,7 +11,14 @@ interface UserListProps {
   onToggle: UserOnToggle;
 }
 
+const countActiveUsers = (users: UserInterface[]) => {
+  console.log("활성화된 유저 수를 세는 중...");
+  return users.filter((user) => user.active).length.toString();
+};
+
 const UserList = ({ users, onRemove, onToggle }: UserListProps) => {
+  const count = useMemo(() => countActiveUsers(users), [users]);
+
   return (
     <div>
       {users.map((user) => (
@@ -22,6 +29,7 @@ const UserList = ({ users, onRemove, onToggle }: UserListProps) => {
           onToggle={onToggle}
         />
       ))}
+      <div>활성화된 유저수 : {count}</div>
     </div>
   );
 };
@@ -35,7 +43,7 @@ export interface UserProps {
 const User = ({ user, onRemove, onToggle }: UserProps) => {
   useEffect(() => {
     console.log(user);
-  });
+  }, []);
 
   const userNameStyle = {
     cursor: "pointer",
