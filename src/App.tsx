@@ -1,5 +1,5 @@
-import UserList from "./UserList.tsx";
-import UserInputComp from "./UserInputComp.tsx";
+import UserList from "./components/UserList.tsx";
+import UserInputComp from "./components/UserInputComp.tsx";
 import { useUserInput } from "./hooks/useUserInput.ts";
 import { useUserListControl } from "./hooks/useUserListControl.ts";
 

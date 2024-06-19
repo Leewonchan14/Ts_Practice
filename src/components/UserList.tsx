@@ -2,7 +2,7 @@ import {
   UserInterface,
   UserOnRemove,
   UserOnToggle,
-} from "./hooks/useUserListControl.ts";
+} from "../hooks/useUserListControl.ts";
 import React from "react";
 
 interface UserListProps {

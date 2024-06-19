@@ -1,5 +1,5 @@
-import { UserInput, UserInputOnChange } from "./hooks/useUserInput.ts";
-import { UserOnCreate } from "./hooks/useUserListControl.ts";
+import { UserInput, UserInputOnChange } from "../hooks/useUserInput.ts";
+import { UserOnCreate } from "../hooks/useUserListControl.ts";
 
 export interface UserInputCompProps {
   onChange: UserInputOnChange;
