@@ -17,16 +17,13 @@ export const useUserInput: UseUserInput = () => {
     email: "",
     username: "",
   });
-  const onChange: UserInputOnChange = useCallback(
-    (e) => {
-      const { name, value } = e.target;
-      setInputs({
-        ...inputs,
-        [name]: value,
-      });
-    },
-    [inputs]
-  );
+  const onChange: UserInputOnChange = useCallback((e) => {
+    const { name, value } = e.target;
+    setInputs((inputs) => ({
+      ...inputs,
+      [name]: value,
+    }));
+  }, []);
 
   return { inputs, onChange };
 };

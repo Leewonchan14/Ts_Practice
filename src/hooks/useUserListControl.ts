@@ -52,32 +52,26 @@ export const useUserListControl: UseUserListControl = ({ username, email }) => {
       email: email,
       active: false,
     };
-    setUsers([...users, newUser]);
+    setUsers((users) => [...users, newUser]);
     nextId.current += 1;
-  }, [users]);
+  }, [username, email]);
 
-  const onRemove: UserOnRemove = useCallback(
-    (id) => {
-      setUsers(users.filter((user) => user.id !== id));
-    },
-    [users]
-  );
+  const onRemove: UserOnRemove = useCallback((id) => {
+    setUsers((users) => users.filter((user) => user.id !== id));
+  }, []);
 
-  const onToggle: UserOnToggle = useCallback(
-    (userId) => {
-      setUsers(
-        users.map((user) => {
-          if (user.id !== userId) return user;
+  const onToggle: UserOnToggle = useCallback((userId) => {
+    setUsers((users) =>
+      users.map((user) => {
+        if (user.id !== userId) return user;
 
-          return {
-            ...user,
-            active: !user.active,
-          };
-        })
-      );
-    },
-    [users]
-  );
+        return {
+          ...user,
+          active: !user.active,
+        };
+      })
+    );
+  }, []);
 
   return { users, onCreate, onRemove, onToggle };
 };
