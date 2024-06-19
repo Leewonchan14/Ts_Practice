@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { UserInput } from "./useUserInput.ts";
 
 export const initUsers: UserInterface[] = [
@@ -45,7 +45,7 @@ export const useUserListControl: UseUserListControl = ({ username, email }) => {
 
   const nextId = useRef(4);
 
-  const onCreate: UserOnCreate = () => {
+  const onCreate: UserOnCreate = useCallback(() => {
     const newUser: UserInterface = {
       id: nextId.current,
       username: username,
@@ -54,24 +54,30 @@ export const useUserListControl: UseUserListControl = ({ username, email }) => {
     };
     setUsers([...users, newUser]);
     nextId.current += 1;
-  };
+  }, [users]);
 
-  const onRemove: UserOnRemove = (id) => {
-    setUsers(users.filter((user) => user.id !== id));
-  };
+  const onRemove: UserOnRemove = useCallback(
+    (id) => {
+      setUsers(users.filter((user) => user.id !== id));
+    },
+    [users]
+  );
 
-  const onToggle: UserOnToggle = (userId) => {
-    setUsers(
-      users.map((user) => {
-        if (user.id !== userId) return user;
+  const onToggle: UserOnToggle = useCallback(
+    (userId) => {
+      setUsers(
+        users.map((user) => {
+          if (user.id !== userId) return user;
 
-        return {
-          ...user,
-          active: !user.active,
-        };
-      })
-    );
-  };
+          return {
+            ...user,
+            active: !user.active,
+          };
+        })
+      );
+    },
+    [users]
+  );
 
   return { users, onCreate, onRemove, onToggle };
 };

@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 
 export interface UserInput {
   email: string;
@@ -17,13 +17,16 @@ export const useUserInput: UseUserInput = () => {
     email: "",
     username: "",
   });
-  const onChange: UserInputOnChange = (e) => {
-    const { name, value } = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
-  };
+  const onChange: UserInputOnChange = useCallback(
+    (e) => {
+      const { name, value } = e.target;
+      setInputs({
+        ...inputs,
+        [name]: value,
+      });
+    },
+    [inputs]
+  );
 
   return { inputs, onChange };
 };
